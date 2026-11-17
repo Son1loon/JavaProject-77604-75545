@@ -11,11 +11,11 @@ public class Pracownik extends Osoba{
     }
 
     public String obsluz(Wypozyczenie wypozyczenie) {
-        return "Sprzedawca " + getImie() + " (" + stanowisko + ") obsluzyl: " + wypozyczenie;
+        return "Pracownik " + getImie() + " (" + stanowisko + ") obsluzyl: " + wypozyczenie;
     }
 
     @Override
     public String opis() {
         return "Pracownik: " + getImie() + " " + getNazwisko() + ", stanowisko: " + stanowisko + ", pensja: " + pensja;
-    };
+    }
 }
