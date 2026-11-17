@@ -14,6 +14,11 @@ public class Rower extends Pojazd {
     }
 
     @Override
+    public TypPojazdu getTypPojazdu() {
+        return TypPojazdu.ROWER;
+    }
+
+    @Override
     public double obliczKoszt(int dni) {
         if (dni <= 0) {
             throw new IllegalArgumentException("Liczba dni musi byc dodatnia");

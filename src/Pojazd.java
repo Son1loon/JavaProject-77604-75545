@@ -1,5 +1,7 @@
 
-public abstract class Pojazd {
+import java.util.*;
+
+public abstract class Pojazd implements Comparable<Pojazd>{
 
     private String marka;
     private String model;
@@ -48,6 +50,39 @@ public abstract class Pojazd {
 
     public static int getLiczbaPojazdow() {
         return liczbaPojazdow;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Pojazd pojazd = (Pojazd) obj;
+
+        return rokProdukcji == pojazd.rokProdukcji
+                && Objects.equals(marka, pojazd.marka)
+                && Objects.equals(model, pojazd.model);
+    }
+
+    public abstract TypPojazdu getTypPojazdu();
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(marka, model, rokProdukcji, getClass());
+    }
+
+    @Override
+    public int compareTo(Pojazd inny) {
+        return Double.compare(
+                this.cenaZaDzien,
+                inny.cenaZaDzien
+        );
     }
 
     @Override
