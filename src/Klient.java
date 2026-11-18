@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 
 public class Klient extends Osoba {
-
-    private ArrayList<Wypozyczenie> historia =
-            new ArrayList<Wypozyczenie>();
+    private ArrayList<Wypozyczenie> historia = new ArrayList<Wypozyczenie>();
 
     public Klient(String imie, String nazwisko) {
         super(imie, nazwisko);
@@ -19,8 +17,7 @@ public class Klient extends Osoba {
 
     @Override
     public String opis() {
-        return "Klient " + super.toString()
-                + ", wypozyczen: " + liczbaWypozyczen();
+        return "Klient " + super.toString() + ", wypozyczen: " + liczbaWypozyczen();
     }
 
     @Override

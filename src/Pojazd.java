@@ -27,27 +27,21 @@ public abstract class Pojazd implements Comparable<Pojazd>{
     public String getMarka() {
         return marka;
     }
-
     public String getModel() {
         return model;
     }
-
     public int getRokProdukcji() {
         return rokProdukcji;
     }
-
     public double getCenaZaDzien() {
         return cenaZaDzien;
     }
-
     public boolean isDostepny() {
         return dostepny;
     }
-
     public void setDostepny(boolean dostepny) {
         this.dostepny = dostepny;
     }
-
     public static int getLiczbaPojazdow() {
         return liczbaPojazdow;
     }
@@ -87,8 +81,6 @@ public abstract class Pojazd implements Comparable<Pojazd>{
 
     @Override
     public String toString() {
-        return marka + " " + model
-                + " (" + rokProdukcji + ")"
-                + " - " + cenaZaDzien + " PLN/dzien";
+        return marka + " " + model + " (" + rokProdukcji + ")" + " - " + cenaZaDzien + " PLN/dzien";
     }
 }

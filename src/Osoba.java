@@ -7,7 +7,6 @@ public abstract class Osoba {
         this.nazwisko = nazwisko;
     }
 
-    // getters
     public String getImie() {
         return imie;
     }
@@ -15,10 +14,8 @@ public abstract class Osoba {
         return nazwisko;
     }
 
-    //  opis
     public abstract String opis();
 
-    // toString
     @Override
     public String toString() {
         return imie + " " + nazwisko;

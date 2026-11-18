@@ -3,8 +3,7 @@ public class Samochod extends Pojazd {
 
     private boolean klimatyzacja;
 
-    public Samochod(String marka, String model, int rokProdukcji,
-                    double cenaZaDzien, boolean klimatyzacja) {
+    public Samochod(String marka, String model, int rokProdukcji, double cenaZaDzien, boolean klimatyzacja) {
         super(marka, model, rokProdukcji, cenaZaDzien);
         this.klimatyzacja = klimatyzacja;
     }
@@ -28,7 +27,6 @@ public class Samochod extends Pojazd {
 
     @Override
     public String toString() {
-        return super.toString()
-                + " | Klimatyzacja: " + (klimatyzacja ? "Tak" : "Nie");
+        return super.toString() + " | Klimatyzacja: " + (klimatyzacja ? "Tak" : "Nie");
     }
 }
