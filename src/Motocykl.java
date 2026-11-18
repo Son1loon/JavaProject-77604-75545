@@ -1,4 +1,3 @@
-
 public class Motocykl extends Pojazd {
 
     private int pojemnoscSilnika;

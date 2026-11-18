@@ -26,8 +26,7 @@ public class KonsolaUI implements InterfejsUzytkownika {
                 "10. Szczegoly pojazdow",
                 "0. Wyjscie"
         };
-
-        System.out.println("\nWYPOZYCZALNIA POJAZDOW");
+        System.out.println("wypozyczalnia pojazdow");
 
         for (String element : menu) {
             System.out.println(element);
@@ -63,71 +62,44 @@ public class KonsolaUI implements InterfejsUzytkownika {
                 case 1:
                     pokazPojazdy();
                     break;
-
                 case 2:
-                    Narzedzia.wyswietlTytul("LISTA KLIENTOW");
-                    Narzedzia.wyswietlListe(
-                            wypozyczalnia.pobierzKlientow()
-                    );
-
+                    Narzedzia.wyswietlTytul("lista klientow");
+                    Narzedzia.wyswietlListe(wypozyczalnia.pobierzKlientow());
                     for (Klient klient : wypozyczalnia.pobierzKlientow()) {
-                        System.out.println(
-                                "Liczba wypozyczen klienta: "
-                                        + klient.liczbaWypozyczen()
-                        );
+                        System.out.println("Liczba wypozyczen klienta: " + klient.liczbaWypozyczen());
                     }
                     break;
-
                 case 3:
                     wypozycz();
                     break;
-
                 case 4:
                     pokazWypozyczenia();
                     break;
-
                 case 5:
-                    Narzedzia.wyswietlTytul("SORTOWANIE COMPARABLE");
-                    Narzedzia.wyswietlListe(
-                            wypozyczalnia.sortujComparable()
-                    );
+                    Narzedzia.wyswietlTytul("sortowanie comparable");
+                    Narzedzia.wyswietlListe(wypozyczalnia.sortujComparable());
                     break;
-
                 case 6:
-                    Narzedzia.wyswietlTytul("SORTOWANIE COMPARATOR");
-                    Narzedzia.wyswietlListe(
-                            wypozyczalnia.sortujComparator()
-                    );
+                    Narzedzia.wyswietlTytul("sortowanie comparator");
+                    Narzedzia.wyswietlListe(wypozyczalnia.sortujComparator());
                     break;
-
                 case 7:
-                    pokazKomunikat(
-                            "Liczba pojazdow: "
-                                    + Pojazd.getLiczbaPojazdow()
-                    );
-                    pokazKomunikat(
-                            "Liczba wypozyczen: "
-                                    + Wypozyczenie.getLiczbaWypozyczen()
-                    );
+                    pokazKomunikat("Liczba pojazdow: " + Pojazd.getLiczbaPojazdow());
+                    pokazKomunikat("Liczba wypozyczen: " + Wypozyczenie.getLiczbaWypozyczen());
                     break;
-
                 case 8:
                     zwrocPojazd();
                     break;
-
                 case 9:
                     pokazPracownikow();
                     break;
-
                 case 10:
                     pokazSzczegolyPojazdow();
                     break;
-
                 case 0:
                     dziala = false;
                     pokazKomunikat("Do widzenia!");
                     break;
-
                 default:
                     pokazKomunikat("Nieprawidlowy wybor!");
             }
@@ -135,21 +107,16 @@ public class KonsolaUI implements InterfejsUzytkownika {
     }
 
     private void pokazPojazdy() {
-        Narzedzia.wyswietlTytul("LISTA POJAZDOW");
-
+        Narzedzia.wyswietlTytul("lista pojazdow");
         for (Pojazd pojazd : wypozyczalnia.getPojazdy()) {
-            System.out.println(
-                    pojazd.getTypPojazdu() + " - " + pojazd
-            );
+            System.out.println(pojazd.getTypPojazdu() + " - " + pojazd);
         }
     }
 
     private void wypozycz() {
         try {
-            Narzedzia.wyswietlTytul("WYPOZYCZANIE POJAZDU");
-
-            ArrayList<Klient> klienci =
-                    wypozyczalnia.pobierzKlientow();
+            Narzedzia.wyswietlTytul("wypozyczanie pojazdu");
+            ArrayList<Klient> klienci = wypozyczalnia.pobierzKlientow();
 
             if (klienci.isEmpty()) {
                 pokazKomunikat("Brak klientow!");
@@ -176,16 +143,11 @@ public class KonsolaUI implements InterfejsUzytkownika {
             String model = scanner.nextLine();
 
             int dni = pobierzLiczbe("Podaj liczbe dni: ");
-
-            Wypozyczenie wypozyczenie =
-                    wypozyczalnia.wypozyczPojazd(
-                            klient, marka, model, dni
-                    );
+            Wypozyczenie wypozyczenie = wypozyczalnia.wypozyczPojazd(klient, marka, model, dni);
 
             pokazKomunikat("Wypozyczenie zakonczone sukcesem!");
             System.out.println(wypozyczenie);
 
-            // Obsluga wypozyczenia przez pracownika
             for (Osoba osoba : wypozyczalnia.getOsoby()) {
                 if (osoba instanceof Pracownik) {
                     Pracownik pracownik = (Pracownik) osoba;
@@ -205,10 +167,8 @@ public class KonsolaUI implements InterfejsUzytkownika {
     }
 
     private void pokazWypozyczenia() {
-        Narzedzia.wyswietlTytul("AKTYWNE WYPOZYCZENIA");
-
-        ArrayList<Wypozyczenie> lista =
-                wypozyczalnia.getWypozyczenia();
+        Narzedzia.wyswietlTytul("aktywne wypozyczenia");
+        ArrayList<Wypozyczenie> lista = wypozyczalnia.getWypozyczenia();
 
         if (lista.isEmpty()) {
             pokazKomunikat("Brak aktywnych wypozyczen.");
@@ -225,20 +185,18 @@ public class KonsolaUI implements InterfejsUzytkownika {
             System.out.println(
                     "Pojazd: " + wypozyczenie.getPojazd()
             );
-            System.out.println("-------------------------");
         }
     }
 
     private void zwrocPojazd() {
-        ArrayList<Wypozyczenie> lista =
-                wypozyczalnia.getWypozyczenia();
+        ArrayList<Wypozyczenie> lista = wypozyczalnia.getWypozyczenia();
 
         if (lista.isEmpty()) {
             pokazKomunikat("Brak pojazdow do zwrotu.");
             return;
         }
 
-        Narzedzia.wyswietlTytul("ZWROT POJAZDU");
+        Narzedzia.wyswietlTytul("zwrot pojazdu");
 
         for (int i = 0; i < lista.size(); i++) {
             System.out.println(
@@ -254,14 +212,13 @@ public class KonsolaUI implements InterfejsUzytkownika {
         }
 
         Wypozyczenie wypozyczenie = lista.get(numer - 1);
-
         wypozyczalnia.zwrocPojazd(wypozyczenie);
 
         pokazKomunikat("Pojazd zostal zwrocony.");
     }
 
     private void pokazPracownikow() {
-        Narzedzia.wyswietlTytul("LISTA PRACOWNIKOW");
+        Narzedzia.wyswietlTytul("lista pracownikow");
 
         for (Osoba osoba : wypozyczalnia.getOsoby()) {
             if (osoba instanceof Pracownik) {
@@ -272,7 +229,7 @@ public class KonsolaUI implements InterfejsUzytkownika {
     }
 
     private void pokazSzczegolyPojazdow() {
-        Narzedzia.wyswietlTytul("SZCZEGOLY POJAZDOW");
+        Narzedzia.wyswietlTytul("szczegole pojazdow");
 
         for (Pojazd pojazd : wypozyczalnia.getPojazdy()) {
             System.out.println(pojazd);
@@ -280,30 +237,14 @@ public class KonsolaUI implements InterfejsUzytkownika {
 
             if (pojazd instanceof Samochod) {
                 Samochod samochod = (Samochod) pojazd;
-
-                System.out.println(
-                        "Klimatyzacja: "
-                                + (samochod.isKlimatyzacja() ? "Tak" : "Nie")
-                );
-
+                System.out.println("Klimatyzacja: " + (samochod.isKlimatyzacja() ? "Tak" : "Nie"));
             } else if (pojazd instanceof Motocykl) {
                 Motocykl motocykl = (Motocykl) pojazd;
-
-                System.out.println(
-                        "Pojemnosc silnika: "
-                                + motocykl.getPojemnoscSilnika() + " cm3"
-                );
-
+                System.out.println("Pojemnosc silnika: " + motocykl.getPojemnoscSilnika() + " cm3");
             } else if (pojazd instanceof Rower) {
                 Rower rower = (Rower) pojazd;
-
-                System.out.println(
-                        "Elektryczny: "
-                                + (rower.isElektryczny() ? "Tak" : "Nie")
-                );
+                System.out.println("Elektryczny: " + (rower.isElektryczny() ? "Tak" : "Nie"));
             }
-
-            System.out.println("-------------------------");
         }
     }
 }
